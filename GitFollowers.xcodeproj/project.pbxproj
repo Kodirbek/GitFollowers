@@ -62,13 +62,13 @@
 			children = (
 				818381632B46212A001C261E /* AppDelegate.swift */,
 				818381652B46212A001C261E /* SceneDelegate.swift */,
+				8183816C2B462130001C261E /* Assets.xcassets */,
+				8183816E2B462130001C261E /* LaunchScreen.storyboard */,
+				818381712B462130001C261E /* Info.plist */,
 				818381672B46212A001C261E /* SearchVC.swift */,
 				818381972B484FA7001C261E /* FavoritesListVC.swift */,
 				818381992B4AAE49001C261E /* GFButton.swift */,
 				8183819B2B4ACDA1001C261E /* GFTextField.swift */,
-				8183816C2B462130001C261E /* Assets.xcassets */,
-				8183816E2B462130001C261E /* LaunchScreen.storyboard */,
-				818381712B462130001C261E /* Info.plist */,
 			);
 			path = GitFollowers;
 			sourceTree = "<group>";
