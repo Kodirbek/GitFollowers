@@ -14,6 +14,7 @@
 		818381702B462130001C261E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8183816E2B462130001C261E /* LaunchScreen.storyboard */; };
 		818381982B484FA7001C261E /* FavoritesListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818381972B484FA7001C261E /* FavoritesListVC.swift */; };
 		8183819A2B4AAE49001C261E /* GFButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818381992B4AAE49001C261E /* GFButton.swift */; };
+		8183819C2B4ACDA1001C261E /* GFTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8183819B2B4ACDA1001C261E /* GFTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		818381712B462130001C261E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		818381972B484FA7001C261E /* FavoritesListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesListVC.swift; sourceTree = "<group>"; };
 		818381992B4AAE49001C261E /* GFButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFButton.swift; sourceTree = "<group>"; };
+		8183819B2B4ACDA1001C261E /* GFTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				818381672B46212A001C261E /* SearchVC.swift */,
 				818381972B484FA7001C261E /* FavoritesListVC.swift */,
 				818381992B4AAE49001C261E /* GFButton.swift */,
+				8183819B2B4ACDA1001C261E /* GFTextField.swift */,
 				8183816C2B462130001C261E /* Assets.xcassets */,
 				8183816E2B462130001C261E /* LaunchScreen.storyboard */,
 				818381712B462130001C261E /* Info.plist */,
@@ -140,6 +143,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8183819C2B4ACDA1001C261E /* GFTextField.swift in Sources */,
 				818381982B484FA7001C261E /* FavoritesListVC.swift in Sources */,
 				8183819A2B4AAE49001C261E /* GFButton.swift in Sources */,
 				818381682B46212A001C261E /* SearchVC.swift in Sources */,
