@@ -16,6 +16,7 @@
 		8183819A2B4AAE49001C261E /* GFButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818381992B4AAE49001C261E /* GFButton.swift */; };
 		8183819C2B4ACDA1001C261E /* GFTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8183819B2B4ACDA1001C261E /* GFTextField.swift */; };
 		8183819E2B4C22EF001C261E /* FollowerListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8183819D2B4C22EF001C261E /* FollowerListVC.swift */; };
+		818381A02B4C2BF7001C261E /* GFTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8183819F2B4C2BF7001C261E /* GFTitleLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		818381992B4AAE49001C261E /* GFButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFButton.swift; sourceTree = "<group>"; };
 		8183819B2B4ACDA1001C261E /* GFTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTextField.swift; sourceTree = "<group>"; };
 		8183819D2B4C22EF001C261E /* FollowerListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerListVC.swift; sourceTree = "<group>"; };
+		8183819F2B4C2BF7001C261E /* GFTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTitleLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				818381992B4AAE49001C261E /* GFButton.swift */,
 				8183819B2B4ACDA1001C261E /* GFTextField.swift */,
 				8183819D2B4C22EF001C261E /* FollowerListVC.swift */,
+				8183819F2B4C2BF7001C261E /* GFTitleLabel.swift */,
 			);
 			path = GitFollowers;
 			sourceTree = "<group>";
@@ -150,6 +153,7 @@
 				818381982B484FA7001C261E /* FavoritesListVC.swift in Sources */,
 				8183819A2B4AAE49001C261E /* GFButton.swift in Sources */,
 				818381682B46212A001C261E /* SearchVC.swift in Sources */,
+				818381A02B4C2BF7001C261E /* GFTitleLabel.swift in Sources */,
 				8183819E2B4C22EF001C261E /* FollowerListVC.swift in Sources */,
 				818381642B46212A001C261E /* AppDelegate.swift in Sources */,
 				818381662B46212A001C261E /* SceneDelegate.swift in Sources */,
