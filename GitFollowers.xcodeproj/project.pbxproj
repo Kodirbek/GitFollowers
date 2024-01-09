@@ -18,6 +18,7 @@
 		8183819E2B4C22EF001C261E /* FollowerListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8183819D2B4C22EF001C261E /* FollowerListVC.swift */; };
 		818381A02B4C2BF7001C261E /* GFTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8183819F2B4C2BF7001C261E /* GFTitleLabel.swift */; };
 		818381A22B4C2E8F001C261E /* GFBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818381A12B4C2E8F001C261E /* GFBodyLabel.swift */; };
+		818381A42B4D90FF001C261E /* GFAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818381A32B4D90FF001C261E /* GFAlertVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		8183819D2B4C22EF001C261E /* FollowerListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerListVC.swift; sourceTree = "<group>"; };
 		8183819F2B4C2BF7001C261E /* GFTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFTitleLabel.swift; sourceTree = "<group>"; };
 		818381A12B4C2E8F001C261E /* GFBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFBodyLabel.swift; sourceTree = "<group>"; };
+		818381A32B4D90FF001C261E /* GFAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFAlertVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 				8183819D2B4C22EF001C261E /* FollowerListVC.swift */,
 				8183819F2B4C2BF7001C261E /* GFTitleLabel.swift */,
 				818381A12B4C2E8F001C261E /* GFBodyLabel.swift */,
+				818381A32B4D90FF001C261E /* GFAlertVC.swift */,
 			);
 			path = GitFollowers;
 			sourceTree = "<group>";
@@ -156,6 +159,7 @@
 				818381982B484FA7001C261E /* FavoritesListVC.swift in Sources */,
 				8183819A2B4AAE49001C261E /* GFButton.swift in Sources */,
 				818381682B46212A001C261E /* SearchVC.swift in Sources */,
+				818381A42B4D90FF001C261E /* GFAlertVC.swift in Sources */,
 				818381A22B4C2E8F001C261E /* GFBodyLabel.swift in Sources */,
 				818381A02B4C2BF7001C261E /* GFTitleLabel.swift in Sources */,
 				8183819E2B4C22EF001C261E /* FollowerListVC.swift in Sources */,
