@@ -74,8 +74,9 @@
 		818381622B46212A001C261E /* GitFollowers */ = {
 			isa = PBXGroup;
 			children = (
-				81EED6F42B54295800B9DD09 /* Model */,
 				818381AA2B5038BD001C261E /* Support */,
+				818381712B462130001C261E /* Info.plist */,
+				81EED6F42B54295800B9DD09 /* Model */,
 				818381A92B50385B001C261E /* Extensions */,
 				818381A82B50380E001C261E /* Custom Views */,
 				818381A72B50379E001C261E /* Screens */,
@@ -120,7 +121,6 @@
 				818381652B46212A001C261E /* SceneDelegate.swift */,
 				8183816C2B462130001C261E /* Assets.xcassets */,
 				8183816E2B462130001C261E /* LaunchScreen.storyboard */,
-				818381712B462130001C261E /* Info.plist */,
 			);
 			path = Support;
 			sourceTree = "<group>";
