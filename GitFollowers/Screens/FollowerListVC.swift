@@ -75,10 +75,14 @@ class FollowerListVC: UIViewController {
     func updateData() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Follower>()
         snapshot.appendSections([.main])
+        snapshot.appendItems(followers)
+        DispatchQueue.main.async {
+            self.dataSource.apply(snapshot, animatingDifferences: true)
+        }
     }
     
     
-    // MARK: - Mathods
+    // MARK: - API Method
     func getFollowers() {
         NetworkManager.shared.getFollowers(for: username, page: 1) { result in
             switch result {
