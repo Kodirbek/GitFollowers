@@ -27,4 +27,14 @@ class GFAvatarImageView: UIImageView {
         translatesAutoresizingMaskIntoConstraints = false
     }
 
+    func downloadImage(from urlString: String) {
+        guard let url = URL(string: urlString) else { return }
+        
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            <#code#>
+        }
+        
+    }
+    
+    
 }
