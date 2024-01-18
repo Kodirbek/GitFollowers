@@ -34,6 +34,10 @@ class FollowerListVC: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
+    deinit {
+        print("FollowerListVC deinit()")
+    }
+    
     
     // MARK: - Set up UI
     func configureViewController() {
