@@ -77,8 +77,9 @@ class FollowerListVC: UIViewController {
     
     // MARK: - API Method
     func getFollowers(username: String, page: Int) {
+        showLoading()
         NetworkManager.shared.getFollowers(for: username, page: page) { [weak self] result in
-            
+            self?.hideLoading()
             switch result {
                 case .success(let followers):
                     if followers.count < 100 { self?.hasMoreFollowers = false }
