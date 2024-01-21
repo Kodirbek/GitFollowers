@@ -26,6 +26,7 @@ class FollowerListVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
+        configureSearchController()
         configureCollectionView()
         configureDataSource()
         getFollowers(username: username, page: page)
@@ -77,7 +78,9 @@ class FollowerListVC: UIViewController {
     // MARK: - SearchController
     func configureSearchController() {
         let searchController = UISearchController()
-        searchController.delegate = self
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.placeholder = "Search for a username"
+        navigationItem.searchController = searchController
     }
     
     
