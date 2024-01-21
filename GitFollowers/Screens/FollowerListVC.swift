@@ -74,6 +74,12 @@ class FollowerListVC: UIViewController {
         }
     }
     
+    // MARK: - SearchController
+    func configureSearchController() {
+        let searchController = UISearchController()
+        searchController.delegate = self
+    }
+    
     
     // MARK: - API Method
     func getFollowers(username: String, page: Int) {
@@ -120,5 +126,14 @@ extension FollowerListVC: UICollectionViewDelegate {
             getFollowers(username: username, page: page)
         }
     }
+    
+}
+
+// MARK: - SearchController delegate methods
+extension FollowerListVC: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        <#code#>
+    }
+    
     
 }
