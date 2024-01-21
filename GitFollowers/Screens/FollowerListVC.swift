@@ -80,6 +80,7 @@ class FollowerListVC: UIViewController {
         let searchController = UISearchController()
         searchController.searchResultsUpdater = self
         searchController.searchBar.placeholder = "Search for a username"
+        searchController.obscuresBackgroundDuringPresentation = false
         navigationItem.searchController = searchController
     }
     
@@ -135,8 +136,6 @@ extension FollowerListVC: UICollectionViewDelegate {
 // MARK: - SearchController delegate methods
 extension FollowerListVC: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        <#code#>
+        // configure what happens when searching
     }
-    
-    
 }
