@@ -137,7 +137,6 @@ extension FollowerListVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let activeArray = isSearching ? filteredFollowers : followers
         let follower = activeArray[indexPath.item]
-        print("Follower selected: \(follower)")
         
         let destinationVC = UserInfoVC()
         destinationVC.userName = follower.login

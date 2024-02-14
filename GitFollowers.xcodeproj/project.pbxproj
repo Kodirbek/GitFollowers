@@ -12,6 +12,8 @@
 		814BC1C92B7C2F4F00B830C2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814BC1C82B7C2F4F00B830C2 /* Constants.swift */; };
 		814BC1CB2B7D7D3C00B830C2 /* GFItemInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814BC1CA2B7D7D3C00B830C2 /* GFItemInfoView.swift */; };
 		814BC1CD2B7D825500B830C2 /* GFItemInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814BC1CC2B7D825500B830C2 /* GFItemInfoVC.swift */; };
+		814BC1CF2B7D857B00B830C2 /* GFRepoItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814BC1CE2B7D857B00B830C2 /* GFRepoItemVC.swift */; };
+		814BC1D12B7D881600B830C2 /* GFFollowerItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814BC1D02B7D881500B830C2 /* GFFollowerItemVC.swift */; };
 		8171FF8D2B65462D004461ED /* UserInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8171FF8C2B65462D004461ED /* UserInfoVC.swift */; };
 		818381642B46212A001C261E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818381632B46212A001C261E /* AppDelegate.swift */; };
 		818381662B46212A001C261E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818381652B46212A001C261E /* SceneDelegate.swift */; };
@@ -42,6 +44,8 @@
 		814BC1C82B7C2F4F00B830C2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		814BC1CA2B7D7D3C00B830C2 /* GFItemInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFItemInfoView.swift; sourceTree = "<group>"; };
 		814BC1CC2B7D825500B830C2 /* GFItemInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFItemInfoVC.swift; sourceTree = "<group>"; };
+		814BC1CE2B7D857B00B830C2 /* GFRepoItemVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFRepoItemVC.swift; sourceTree = "<group>"; };
+		814BC1D02B7D881500B830C2 /* GFFollowerItemVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFFollowerItemVC.swift; sourceTree = "<group>"; };
 		8171FF8C2B65462D004461ED /* UserInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoVC.swift; sourceTree = "<group>"; };
 		818381602B46212A001C261E /* GitFollowers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitFollowers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		818381632B46212A001C261E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +83,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		814BC1D22B7D886500B830C2 /* ItemInfoVCs */ = {
+			isa = PBXGroup;
+			children = (
+				814BC1CC2B7D825500B830C2 /* GFItemInfoVC.swift */,
+				814BC1CE2B7D857B00B830C2 /* GFRepoItemVC.swift */,
+				814BC1D02B7D881500B830C2 /* GFFollowerItemVC.swift */,
+			);
+			path = ItemInfoVCs;
+			sourceTree = "<group>";
+		};
 		818381572B46212A001C261E = {
 			isa = PBXGroup;
 			children = (
@@ -217,9 +231,9 @@
 		81EED7092B5AC87000B9DD09 /* ViewConrollers */ = {
 			isa = PBXGroup;
 			children = (
+				814BC1D22B7D886500B830C2 /* ItemInfoVCs */,
 				818381A32B4D90FF001C261E /* GFAlertVC.swift */,
 				814BC1C42B7C262200B830C2 /* GFUserInfoHeaderVC.swift */,
-				814BC1CC2B7D825500B830C2 /* GFItemInfoVC.swift */,
 			);
 			path = ViewConrollers;
 			sourceTree = "<group>";
@@ -323,6 +337,7 @@
 				81EED7032B5812CC00B9DD09 /* GFAvatarImageView.swift in Sources */,
 				818381682B46212A001C261E /* SearchVC.swift in Sources */,
 				818381A42B4D90FF001C261E /* GFAlertVC.swift in Sources */,
+				814BC1D12B7D881600B830C2 /* GFFollowerItemVC.swift in Sources */,
 				814BC1CB2B7D7D3C00B830C2 /* GFItemInfoView.swift in Sources */,
 				81EED7012B58124E00B9DD09 /* FollowerCell.swift in Sources */,
 				81EED6FE2B557E0600B9DD09 /* GFError.swift in Sources */,
@@ -336,6 +351,7 @@
 				8183819E2B4C22EF001C261E /* FollowerListVC.swift in Sources */,
 				818381642B46212A001C261E /* AppDelegate.swift in Sources */,
 				818381662B46212A001C261E /* SceneDelegate.swift in Sources */,
+				814BC1CF2B7D857B00B830C2 /* GFRepoItemVC.swift in Sources */,
 				8171FF8D2B65462D004461ED /* UserInfoVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
