@@ -11,6 +11,10 @@ enum Section {
     case main
 }
 
+protocol FollowerListVCDelegate: AnyObject {
+    func didRequestFollowers(for user: String)
+}
+
 class FollowerListVC: UIViewController {
     
     // MARK: - Properties
@@ -140,6 +144,7 @@ extension FollowerListVC: UICollectionViewDelegate {
         
         let destinationVC = UserInfoVC()
         destinationVC.userName = follower.login
+        destinationVC.delegate = self
         let navController = UINavigationController(rootViewController: destinationVC)
         present(navController, animated: true)
     }
@@ -160,5 +165,19 @@ extension FollowerListVC: UISearchResultsUpdating, UISearchBarDelegate {
         isSearching = false
         updateData(on: followers)
         filteredFollowers = []
+    }
+}
+
+// MARK: - FollowerListVCProtocol delegate
+extension FollowerListVC: FollowerListVCDelegate {
+    func didRequestFollowers(for user: String) {
+        self.username = user
+        title = username
+        page = 1
+        followers.removeAll()
+        filteredFollowers.removeAll()
+        collectionView.setContentOffset(.zero, animated: true)
+        
+        getFollowers(username: username, page: page)
     }
 }
