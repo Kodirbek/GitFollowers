@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import SafariServices
 
 protocol UserInfoVCDelegate: AnyObject {
-    func didTapGitHubProfile()
-    func didTapGitHubFollowers()
+    func didTapGitHubProfile(for user: User)
+    func didTapGitHubFollowers(for user: User)
 }
 
 class UserInfoVC: UIViewController {
@@ -113,13 +114,18 @@ class UserInfoVC: UIViewController {
 
 // MARK: - Extensions
 extension UserInfoVC: UserInfoVCDelegate {
-    
-    func didTapGitHubProfile() {
-        print("show safari view controller")
+    func didTapGitHubProfile(for user: User) {
+        guard let url = URL(string: user.htmlUrl) else {
+            presentGFAlertOnMainThread(title: "Invalid URL", message: "This user's url is invalid,", buttonTitle: "Ok")
+            return
+        }
+        
+        let safariVC = SFSafariViewController(url: url)
+        safariVC.preferredControlTintColor = .systemGreen
+        present(safariVC, animated: true)
     }
     
-    func didTapGitHubFollowers() {
-        print("dismiss this VC")
-        // update followerVC with the new user
+    func didTapGitHubFollowers(for user: User) {
+        // print
     }
 }
