@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol UserInfoVCDelegate: AnyObject {
+    func didTapGitHubProfile()
+    func didTapGitHubFollowers()
+}
+
 class UserInfoVC: UIViewController {
     
     // MARK: - Properties
@@ -36,18 +41,27 @@ class UserInfoVC: UIViewController {
     func getUserInfo() {
         NetworkManager.shared.getUserInfo(for: userName) { [weak self] result in
             guard let self = self else { return }
+            
             switch result {
                 case .success(let user):
-                    DispatchQueue.main.async {
-                        self.add(childVC: GFUserInfoHeaderVC(user: user), to: self.headerView)
-                        self.add(childVC: GFRepoItemVC(user: user), to: self.itemViewOne)
-                        self.add(childVC: GFFollowerItemVC(user: user), to: self.itemViewTwo)
-                        self.dateLabel.text = "GitHub since \(user.createdAt.convertToDisplayFormat())"
-                    }
+                    DispatchQueue.main.async { self.configureUIElements(with: user) }
                 case .failure(let error):
                     self.presentGFAlertOnMainThread(title: "Error", message: error.rawValue, buttonTitle: "Ok")
             }
         }
+    }
+    
+    func configureUIElements(with user: User) {
+        let repoItemVC = GFRepoItemVC(user: user)
+        repoItemVC.delegate = self
+        
+        let followerItemVC = GFFollowerItemVC(user: user)
+        followerItemVC.delegate = self
+        
+        self.add(childVC: GFUserInfoHeaderVC(user: user), to: self.headerView)
+        self.add(childVC: repoItemVC, to: self.itemViewOne)
+        self.add(childVC: followerItemVC, to: self.itemViewTwo)
+        self.dateLabel.text = "GitHub since \(user.createdAt.convertToDisplayFormat())"
     }
     
     // MARK: - Layout
@@ -95,4 +109,17 @@ class UserInfoVC: UIViewController {
         dismiss(animated: true)
     }
 
+}
+
+// MARK: - Extensions
+extension UserInfoVC: UserInfoVCDelegate {
+    
+    func didTapGitHubProfile() {
+        print("show safari view controller")
+    }
+    
+    func didTapGitHubFollowers() {
+        print("dismiss this VC")
+        // update followerVC with the new user
+    }
 }

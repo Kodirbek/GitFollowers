@@ -25,4 +25,8 @@ class GFFollowerItemVC: GFItemInfoVC {
     private func configureButton() {
         actionButton.set(backgroundColor: .systemGreen, title: "Git Followers")
     }
+    
+    override func actionButtonTapped() {
+        delegate?.didTapGitHubFollowers()
+    }
 }
