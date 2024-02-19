@@ -18,8 +18,12 @@ class FavoritesListVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
+        configureTableView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         getFavorites()
-        
     }
     
     
@@ -31,17 +35,34 @@ class FavoritesListVC: UIViewController {
     }
     
     private func configureTableView() {
+        view.addSubview(tableView)
+        tableView.frame = view.bounds
+        tableView.rowHeight = 80
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.register(FavoriteCell.self, forCellReuseIdentifier: FavoriteCell.reuseId)
     }
     
     private func getFavorites() {
         PersistenceManager.retrieveFavorites { [weak self] result in
+            guard let self = self else { return }
             switch result {
                 case .success(let favorites):
-                    self?.favorites = favorites
+                    if favorites.isEmpty {
+                        showEmptyStateView(with: "No favorites?\nAdd one on the follower screen.",
+                                           in: self.view)
+                    } else {
+                        self.favorites = favorites
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                            self.view.bringSubviewToFront(self.tableView)
+                        }
+                    }
+                    
                 case .failure(let error):
-                    print(error)
+                    self.presentGFAlertOnMainThread(title: "Something went wrong",
+                                                    message: error.rawValue,
+                                                    buttonTitle: "Ok")
             }
         }
     }
@@ -52,10 +73,15 @@ class FavoritesListVC: UIViewController {
 extension FavoritesListVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
+        return favorites.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteCell.reuseId) as? FavoriteCell
+        guard let cell = cell else { return UITableViewCell() }
+        
+        let favorite = favorites[indexPath.row]
+        cell.set(favorite: favorite)
+        return cell
     }
 }
