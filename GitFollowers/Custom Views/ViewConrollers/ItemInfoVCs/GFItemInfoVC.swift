@@ -10,10 +10,10 @@ import UIKit
 class GFItemInfoVC: UIViewController {
 
     // MARK: - Properties
-    let stackView = UIStackView()
+    let stackView       = UIStackView()
     let itemInfoViewOne = GFItemInfoView()
     let itemInfoViewTwo = GFItemInfoView()
-    let actionButton = GFButton()
+    let actionButton    = GFButton()
     
     var user: User
     weak var delegate: UserInfoVCDelegate?
@@ -41,19 +41,21 @@ class GFItemInfoVC: UIViewController {
     // MARK: - Methods
     private func configureBackgroundView() {
         view.layer.cornerRadius = 18
-        view.backgroundColor = .secondarySystemBackground
+        view.backgroundColor    = .secondarySystemBackground
     }
     
     private func configureStackView() {
-        stackView.axis = .horizontal
-        stackView.distribution = .equalSpacing
+        stackView.axis          = .horizontal
+        stackView.distribution  = .equalSpacing
         
         stackView.addArrangedSubview(itemInfoViewOne)
         stackView.addArrangedSubview(itemInfoViewTwo)
     }
     
     private func configureActionButton() {
-        actionButton.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
+        actionButton.addTarget(self,
+                               action: #selector(actionButtonTapped),
+                               for: .touchUpInside)
     }
     
     @objc func actionButtonTapped() { }
@@ -66,14 +68,14 @@ class GFItemInfoVC: UIViewController {
         let padding: CGFloat = 20
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: padding),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
+            stackView.topAnchor.constraint(equalTo          : view.topAnchor, constant: padding),
+            stackView.leadingAnchor.constraint(equalTo      : view.leadingAnchor, constant: padding),
+            stackView.trailingAnchor.constraint(equalTo     : view.trailingAnchor, constant: -padding),
             stackView.heightAnchor.constraint(equalToConstant: 50),
             
-            actionButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 10),
-            actionButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            actionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
+            actionButton.topAnchor.constraint(equalTo       : stackView.bottomAnchor, constant: 10),
+            actionButton.leadingAnchor.constraint(equalTo   : view.leadingAnchor, constant: padding),
+            actionButton.trailingAnchor.constraint(equalTo  : view.trailingAnchor, constant: -padding),
             actionButton.heightAnchor.constraint(equalToConstant: 44)
         ])
     }

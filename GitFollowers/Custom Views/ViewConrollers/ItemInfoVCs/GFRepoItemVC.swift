@@ -18,12 +18,15 @@ class GFRepoItemVC: GFItemInfoVC {
     
     // MARK: - Methods
     private func configureItems() {
-        itemInfoViewOne.set(itemInfoType: .repos, count: user.publicRepos)
-        itemInfoViewTwo.set(itemInfoType: .gists, count: user.publicGists)
+        itemInfoViewOne.set(itemInfoType: .repos, 
+                            count: user.publicRepos)
+        itemInfoViewTwo.set(itemInfoType: .gists, 
+                            count: user.publicGists)
     }
     
     private func configureButton() {
-        actionButton.set(backgroundColor: .systemPurple, title: "GitHub Profile")
+        actionButton.set(backgroundColor: .systemPurple, 
+                         title: "GitHub Profile")
     }
     
     override func actionButtonTapped() {
