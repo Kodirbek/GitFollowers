@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FavoritesListVC: UIViewController {
+final class FavoritesListVC: UIViewController {
 
     // MARK: - Properties
     private let tableView           : UITableView = UITableView()

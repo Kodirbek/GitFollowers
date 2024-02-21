@@ -15,18 +15,18 @@ protocol FollowerListVCDelegate: AnyObject {
     func didRequestFollowers(for user: String)
 }
 
-class FollowerListVC: UIViewController {
+final class FollowerListVC: UIViewController {
     
     // MARK: - Properties
-    var username             : String
-    var followers            : [Follower] = []
-    var filteredFollowers    : [Follower] = []
-    var page                 = 1
-    var hasMoreFollowers     = true
-    var isSearching          : Bool = false
+    private var username             : String
+    private var followers            : [Follower] = []
+    private var filteredFollowers    : [Follower] = []
+    private var page                 = 1
+    private var hasMoreFollowers     = true
+    private var isSearching          : Bool = false
     
-    var collectionView       : UICollectionView!
-    var dataSource           : UICollectionViewDiffableDataSource<Section, Follower>!
+    private var collectionView       : UICollectionView!
+    private var dataSource           : UICollectionViewDiffableDataSource<Section, Follower>!
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -60,7 +60,7 @@ class FollowerListVC: UIViewController {
     
     
     // MARK: - Set up UI
-    func configureViewController() {
+    private func configureViewController() {
         view.backgroundColor                    = .systemBackground
         navigationController?
             .navigationBar.prefersLargeTitles   = true
@@ -74,8 +74,8 @@ class FollowerListVC: UIViewController {
     
     
     // MARK: - Collection View configure
-    func configureCollectionView() {
-        collectionView = UICollectionView(frame: view.bounds, 
+    private func configureCollectionView() {
+        collectionView = UICollectionView(frame: view.bounds,
                                           collectionViewLayout: UIHelper.createThreeColumnFlowLayout(in: view))
         view.addSubview(collectionView)
         collectionView.delegate = self
@@ -84,7 +84,7 @@ class FollowerListVC: UIViewController {
                                 forCellWithReuseIdentifier: FollowerCell.reuseId)
     }
     
-    func configureDataSource() {
+    private func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Follower>(collectionView: collectionView,
                                                                            cellProvider: { (collectionView,
                                                                                             indexPath,
@@ -96,7 +96,7 @@ class FollowerListVC: UIViewController {
         })
     }
     
-    func updateData(on followers: [Follower]) {
+    private func updateData(on followers: [Follower]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Follower>()
         snapshot.appendSections([.main])
         snapshot.appendItems(followers)
@@ -139,7 +139,7 @@ class FollowerListVC: UIViewController {
     }
     
     // MARK: - SearchController
-    func configureSearchController() {
+    private func configureSearchController() {
         let searchController                    = UISearchController()
         searchController.searchResultsUpdater   = self
         searchController.searchBar.delegate     = self
@@ -150,7 +150,7 @@ class FollowerListVC: UIViewController {
     
     
     // MARK: - API Method
-    func getFollowers(username: String, page: Int) {
+    private func getFollowers(username: String, page: Int) {
         showLoading()
         NetworkManager.shared.getFollowers(for: username, page: page) { [weak self] result in
             guard let self = self else { return }
@@ -196,13 +196,12 @@ extension FollowerListVC: UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let activeArray = isSearching ? filteredFollowers : followers
-        let follower = activeArray[indexPath.item]
+        let activeArray         = isSearching ? filteredFollowers : followers
+        let follower            = activeArray[indexPath.item]
         
-        let destinationVC = UserInfoVC()
-        destinationVC.userName = follower.login
-        destinationVC.delegate = self
-        let navController = UINavigationController(rootViewController: destinationVC)
+        let destinationVC       = UserInfoVC(username: follower.login)
+        destinationVC.delegate  = self
+        let navController       = UINavigationController(rootViewController: destinationVC)
         present(navController, animated: true)
     }
     

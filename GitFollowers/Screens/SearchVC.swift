@@ -7,16 +7,16 @@
 
 import UIKit
 
-class SearchVC: UIViewController {
+final class SearchVC: UIViewController {
     
     
     // MARK: - Properties
-    let logoImageView                   = UIImageView()
-    let usernameTextField               = GFTextField()
-    let callToActionButton              = GFButton(backgroundColor: .systemGreen, title: "Get Followers")
-    var logoImageViewTopConstraint      : NSLayoutConstraint!
+    private let logoImageView                   = UIImageView()
+    private let usernameTextField               = GFTextField()
+    private let callToActionButton              = GFButton(backgroundColor: .systemGreen, title: "Get Followers")
+    private var logoImageViewTopConstraint      : NSLayoutConstraint!
     
-    var isUsernameEntered               : Bool { !usernameTextField.text!.isEmpty }
+    private var isUsernameEntered               : Bool { !usernameTextField.text!.isEmpty }
 
     
     // MARK: - Init
@@ -40,7 +40,7 @@ class SearchVC: UIViewController {
     // MARK: - Set up UI
     
     // LogoImageView
-    func configureLogoImageView() {
+    private func configureLogoImageView() {
         view.addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         logoImageView.image = Images.ghLogo
@@ -56,7 +56,7 @@ class SearchVC: UIViewController {
     }
     
     // UsernameTextField
-    func configureUsernameTextField() {
+    private func configureUsernameTextField() {
         view.addSubview(usernameTextField)
         usernameTextField.delegate = self
         
@@ -69,7 +69,7 @@ class SearchVC: UIViewController {
     }
 
     // CallToActionButton
-    func configureCallToActionButton() {
+    private func configureCallToActionButton() {
         view.addSubview(callToActionButton)
         callToActionButton.addTarget(self, action: #selector(pushFollowerListVC), for: .touchUpInside)
         
@@ -84,7 +84,7 @@ class SearchVC: UIViewController {
     
     // MARK: - Methods
     
-    func createDismissKeyboardTapGesture() {
+    private func createDismissKeyboardTapGesture() {
         let tap = UITapGestureRecognizer(target: view, 
                                          action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)

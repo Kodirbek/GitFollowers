@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FavoriteCell: UITableViewCell {
+final class FavoriteCell: UITableViewCell {
 
     // MARK: - Properties
     static let reuseId          = "FavoriteCell"
@@ -28,7 +28,9 @@ class FavoriteCell: UITableViewCell {
     // MARK: - Methods
     func set(favorite: Follower) {
         userNameLabel.text = favorite.login
-        avatarImageView.downloadImage(from: favorite.avatarUrl)
+        NetworkManager.shared.downloadImage(from: favorite.avatarUrl) { [weak self] image in
+            DispatchQueue.main.async { self?.avatarImageView.image = image }
+        }
     }
     
     private func configure() {

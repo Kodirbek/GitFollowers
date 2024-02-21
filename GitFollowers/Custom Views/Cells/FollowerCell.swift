@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FollowerCell: UICollectionViewCell {
+final class FollowerCell: UICollectionViewCell {
     
     static let reuseId          = "FollowerCell"
     private let padding: CGFloat = 8
@@ -25,7 +25,9 @@ class FollowerCell: UICollectionViewCell {
     
     func set(follower: Follower) {
         userNameLabel.text = follower.login
-        avatarImageView.downloadImage(from: follower.avatarUrl)
+        NetworkManager.shared.downloadImage(from: follower.avatarUrl) { [weak self] image in
+            DispatchQueue.main.async { self?.avatarImageView.image = image }
+        }
     }
     
     private func configure() {

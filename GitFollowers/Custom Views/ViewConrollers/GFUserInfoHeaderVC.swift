@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GFUserInfoHeaderVC: UIViewController {
+final class GFUserInfoHeaderVC: UIViewController {
     
     // MARK: - Properties
     let avatarImageView     = GFAvatarImageView(frame: .zero)
@@ -38,8 +38,8 @@ class GFUserInfoHeaderVC: UIViewController {
     }
     
     // MARK: - Configure
-    func configureUIElements() {
-        avatarImageView.downloadImage(from: user.avatarUrl)
+    private func configureUIElements() {
+        downloadImage()
         usernameLabel.text      = user.login
         nameLabel.text          = user.name ?? ""
         locationLabel.text      = user.location ?? "No Location"
@@ -50,8 +50,14 @@ class GFUserInfoHeaderVC: UIViewController {
         locationImageView.tintColor = .secondaryLabel
     }
     
+    private func downloadImage() {
+        NetworkManager.shared.downloadImage(from: user.avatarUrl) { [weak self] image in
+            DispatchQueue.main.async { self?.avatarImageView.image = image }
+        }
+    }
+    
     // MARK: - Layout
-    func addSubviews() {
+    private func addSubviews() {
         view.addSubview(avatarImageView)
         view.addSubview(usernameLabel)
         view.addSubview(nameLabel)
@@ -60,7 +66,7 @@ class GFUserInfoHeaderVC: UIViewController {
         view.addSubview(bioLabel)
     }
     
-    func layoutUI() {
+    private func layoutUI() {
         let padding         : CGFloat = 20
         let textImagePadding: CGFloat = 12
         locationImageView.translatesAutoresizingMaskIntoConstraints = false
