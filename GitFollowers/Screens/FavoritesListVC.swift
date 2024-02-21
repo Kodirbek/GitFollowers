@@ -10,8 +10,8 @@ import UIKit
 class FavoritesListVC: UIViewController {
 
     // MARK: - Properties
-    private let tableView: UITableView = UITableView()
-    private var favorites: [Follower] = []
+    private let tableView           : UITableView = UITableView()
+    private var favorites           : [Follower] = []
     
     
     // MARK: - Lifecycle
@@ -29,18 +29,19 @@ class FavoritesListVC: UIViewController {
     
     // MARK: - Methods
     private func configureViewController() {
-        self.view.backgroundColor = .systemBackground
-        title = "Favorites"
+        self.view.backgroundColor   = .systemBackground
+        title                       = "Favorites"
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     private func configureTableView() {
         view.addSubview(tableView)
-        tableView.frame = view.bounds
-        tableView.rowHeight = 80
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(FavoriteCell.self, forCellReuseIdentifier: FavoriteCell.reuseId)
+        tableView.frame             = view.bounds
+        tableView.rowHeight         = 80
+        tableView.delegate          = self
+        tableView.dataSource        = self
+        tableView.register(FavoriteCell.self, 
+                           forCellReuseIdentifier: FavoriteCell.reuseId)
     }
     
     private func getFavorites() {
@@ -60,9 +61,9 @@ class FavoritesListVC: UIViewController {
                     }
                     
                 case .failure(let error):
-                    self.presentGFAlertOnMainThread(title: "Something went wrong",
-                                                    message: error.rawValue,
-                                                    buttonTitle: "Ok")
+                    self.presentGFAlertOnMainThread(title       : "Something went wrong",
+                                                    message     : error.rawValue,
+                                                    buttonTitle : "Ok")
             }
         }
     }

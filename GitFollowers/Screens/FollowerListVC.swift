@@ -18,15 +18,15 @@ protocol FollowerListVCDelegate: AnyObject {
 class FollowerListVC: UIViewController {
     
     // MARK: - Properties
-    var username: String
-    var followers: [Follower] = []
-    var filteredFollowers: [Follower] = []
-    var page = 1
-    var hasMoreFollowers = true
-    var isSearching: Bool = false
+    var username             : String
+    var followers            : [Follower] = []
+    var filteredFollowers    : [Follower] = []
+    var page                 = 1
+    var hasMoreFollowers     = true
+    var isSearching          : Bool = false
     
-    var collectionView: UICollectionView!
-    var dataSource: UICollectionViewDiffableDataSource<Section, Follower>!
+    var collectionView       : UICollectionView!
+    var dataSource           : UICollectionViewDiffableDataSource<Section, Follower>!
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -45,9 +45,9 @@ class FollowerListVC: UIViewController {
     
     // MARK: - Init
     init(username: String) {
-        self.username = username
+        self.username   = username
         super.init(nibName: nil, bundle: nil)
-        title = username
+        title           = username
     }
     
     required init?(coder: NSCoder) {
@@ -61,26 +61,36 @@ class FollowerListVC: UIViewController {
     
     // MARK: - Set up UI
     func configureViewController() {
-        view.backgroundColor = .systemBackground
-        navigationController?.navigationBar.prefersLargeTitles = true
+        view.backgroundColor                    = .systemBackground
+        navigationController?
+            .navigationBar.prefersLargeTitles   = true
         
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
-        navigationItem.rightBarButtonItem = addButton
+        let addButton = UIBarButtonItem(barButtonSystemItem : .add,
+                                        target              : self,
+                                        action              : #selector(addButtonTapped))
+        
+        navigationItem.rightBarButtonItem                   = addButton
     }
     
     
     // MARK: - Collection View configure
     func configureCollectionView() {
-        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UIHelper.createThreeColumnFlowLayout(in: view))
+        collectionView = UICollectionView(frame: view.bounds, 
+                                          collectionViewLayout: UIHelper.createThreeColumnFlowLayout(in: view))
         view.addSubview(collectionView)
         collectionView.delegate = self
         collectionView.backgroundColor = .systemBackground
-        collectionView.register(FollowerCell.self, forCellWithReuseIdentifier: FollowerCell.reuseId)
+        collectionView.register(FollowerCell.self, 
+                                forCellWithReuseIdentifier: FollowerCell.reuseId)
     }
     
     func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, Follower>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, follower) -> UICollectionViewCell? in
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FollowerCell.reuseId, for: indexPath) as? FollowerCell
+        dataSource = UICollectionViewDiffableDataSource<Section, Follower>(collectionView: collectionView,
+                                                                           cellProvider: { (collectionView,
+                                                                                            indexPath,
+                                                                                            follower) -> UICollectionViewCell? in
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FollowerCell.reuseId, 
+                                                          for: indexPath) as? FollowerCell
             cell?.set(follower: follower)
             return cell
         })
@@ -130,12 +140,12 @@ class FollowerListVC: UIViewController {
     
     // MARK: - SearchController
     func configureSearchController() {
-        let searchController = UISearchController()
-        searchController.searchResultsUpdater = self
-        searchController.searchBar.delegate = self
-        searchController.searchBar.placeholder = "Search for a username"
+        let searchController                    = UISearchController()
+        searchController.searchResultsUpdater   = self
+        searchController.searchBar.delegate     = self
+        searchController.searchBar.placeholder  = "Search for a username"
         searchController.obscuresBackgroundDuringPresentation = false
-        navigationItem.searchController = searchController
+        navigationItem.searchController         = searchController
     }
     
     
