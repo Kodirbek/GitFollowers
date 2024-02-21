@@ -10,9 +10,9 @@ import UIKit
 class FavoriteCell: UITableViewCell {
 
     // MARK: - Properties
-    static let reuseId = "FavoriteCell"
+    static let reuseId          = "FavoriteCell"
     private let avatarImageView = GFAvatarImageView(frame: .zero)
-    private let userNameLabel = GFTitleLabel(textAlignment: .left, fontSize: 26)
+    private let userNameLabel   = GFTitleLabel(textAlignment: .left, fontSize: 26)
     
     
     // MARK: - Init
@@ -39,15 +39,15 @@ class FavoriteCell: UITableViewCell {
         let padding: CGFloat = 12
         
         NSLayoutConstraint.activate([
-            avatarImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            avatarImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
-            avatarImageView.heightAnchor.constraint(equalToConstant: 60),
-            avatarImageView.widthAnchor.constraint(equalToConstant: 60),
+            avatarImageView.centerYAnchor.constraint(equalTo        : self.centerYAnchor),
+            avatarImageView.leadingAnchor.constraint(equalTo        : self.leadingAnchor, constant: padding),
+            avatarImageView.heightAnchor.constraint(equalToConstant : 60),
+            avatarImageView.widthAnchor.constraint(equalToConstant  : 60),
             
-            userNameLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            userNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 24),
-            userNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
-            userNameLabel.heightAnchor.constraint(equalToConstant: 40)
+            userNameLabel.centerYAnchor.constraint(equalTo          : self.centerYAnchor),
+            userNameLabel.leadingAnchor.constraint(equalTo          : avatarImageView.trailingAnchor, constant: 24),
+            userNameLabel.trailingAnchor.constraint(equalTo         : self.trailingAnchor, constant: -padding),
+            userNameLabel.heightAnchor.constraint(equalToConstant   : 40)
         ])
     }
 }
