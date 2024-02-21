@@ -18,7 +18,7 @@ protocol FollowerListVCDelegate: AnyObject {
 class FollowerListVC: UIViewController {
     
     // MARK: - Properties
-    var username: String!
+    var username: String
     var followers: [Follower] = []
     var filteredFollowers: [Follower] = []
     var page = 1
@@ -41,6 +41,17 @@ class FollowerListVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    // MARK: - Init
+    init(username: String) {
+        self.username = username
+        super.init(nibName: nil, bundle: nil)
+        title = username
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     deinit {
