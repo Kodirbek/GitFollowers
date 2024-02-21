@@ -7,6 +7,9 @@
 
 import UIKit
 
+
+let BASE_URL: String = "https://api.github.com/users/"
+
 enum SFSymbols {
     static let location = "mappin.and.ellipse"
     static let repos = "folder"

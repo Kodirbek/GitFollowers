@@ -8,15 +8,16 @@
 import UIKit
 
 class NetworkManager {
-    static let shared = NetworkManager()
-    private let baseUrl = "https://api.github.com/users/"
-    let cache = NSCache<NSString, UIImage>()
+    static let shared   = NetworkManager()
+    let cache           = NSCache<NSString, UIImage>()
     
     private init() {}
     
-    func getFollowers(for username: String, page: Int, completed: @escaping (Result<[Follower], GFError>) -> Void) {
+    func getFollowers(for username: String, 
+                      page: Int,
+                      completed: @escaping (Result<[Follower], GFError>) -> Void) {
         // url
-        let urlString = baseUrl + "\(username)/followers?per_page=100&page=\(page)"
+        let urlString = BASE_URL + "\(username)/followers?per_page=100&page=\(page)"
         guard let url = URL(string: urlString) else {
             completed(.failure(.invalidUsername))
             return
@@ -55,9 +56,10 @@ class NetworkManager {
     }
     
     
-    func getUserInfo(for username: String, completed: @escaping (Result<User, GFError>) -> Void) {
+    func getUserInfo(for username: String, 
+                     completed: @escaping (Result<User, GFError>) -> Void) {
         // url
-        let urlString = baseUrl + username
+        let urlString = BASE_URL + username
         guard let url = URL(string: urlString) else {
             completed(.failure(.invalidUsername))
             return
@@ -82,9 +84,10 @@ class NetworkManager {
             }
             
             do {
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                let user = try decoder.decode(User.self, from: data)
+                let decoder                     = JSONDecoder()
+                decoder.keyDecodingStrategy     = .convertFromSnakeCase
+                decoder.dateDecodingStrategy    = .iso8601
+                let user                        = try decoder.decode(User.self, from: data)
                 completed(.success(user))
             } catch {
                 completed(.failure(.invalidData))
