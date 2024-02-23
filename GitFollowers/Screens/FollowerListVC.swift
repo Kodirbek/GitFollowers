@@ -15,7 +15,7 @@ protocol FollowerListVCDelegate: AnyObject {
     func didRequestFollowers(for user: String)
 }
 
-final class FollowerListVC: UIViewController {
+final class FollowerListVC: GFDataLoadingVC {
     
     // MARK: - Properties
     private var username             : String
