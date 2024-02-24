@@ -9,10 +9,16 @@ import UIKit
 
 final class FollowerCell: UICollectionViewCell {
     
+    
+    // MARK: - Properties
+    
     static let reuseId          = "FollowerCell"
-    private let padding: CGFloat = 8
+    private let padding         : CGFloat = 8
     private let avatarImageView = GFAvatarImageView(frame: .zero)
     private let userNameLabel   = GFTitleLabel(textAlignment: .center, fontSize: 16)
+    
+    
+    // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -22,6 +28,14 @@ final class FollowerCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func prepareForReuse() {
+        avatarImageView.image = Images.placeholder
+        userNameLabel.text = ""
+    }
+    
+    
+    // MARK: - Methods
     
     func set(follower: Follower) {
         userNameLabel.text = follower.login
