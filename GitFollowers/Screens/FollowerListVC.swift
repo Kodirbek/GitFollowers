@@ -25,6 +25,7 @@ final class FollowerListVC: GFDataLoadingVC {
     private var hasMoreFollowers     = true
     private var isSearching          : Bool = false
     
+    private var searchController     : UISearchController!
     private var collectionView       : UICollectionView!
     private var dataSource           : UICollectionViewDiffableDataSource<Section, Follower>!
     
@@ -140,7 +141,7 @@ final class FollowerListVC: GFDataLoadingVC {
     
     // MARK: - SearchController
     private func configureSearchController() {
-        let searchController                    = UISearchController()
+        searchController                        = UISearchController()
         searchController.searchResultsUpdater   = self
         searchController.searchBar.delegate     = self
         searchController.searchBar.placeholder  = "Search for a username"
@@ -164,9 +165,10 @@ final class FollowerListVC: GFDataLoadingVC {
                     
                     // check for the condition where the user might have no followers
                     if self.followers.isEmpty {
-                        let message = "This user does not have any followers. Go follow them 😀"
                         DispatchQueue.main.async {
-                            self.showEmptyStateView(with: message, in: self.view)
+                            self.searchController.searchBar.isHidden = true
+                            self.showEmptyStateView(with: emptyMessage,
+                                                    in: self.view)
                         }
                         return
                     }

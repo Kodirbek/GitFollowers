@@ -9,6 +9,7 @@ import UIKit
 
 
 let BASE_URL: String        = "https://api.github.com/users/"
+let emptyMessage            = "This user does not have any followers. Go follow them 😀"
 
 enum SFSymbols {
     static let location     = UIImage(systemName: "mappin.and.ellipse")
