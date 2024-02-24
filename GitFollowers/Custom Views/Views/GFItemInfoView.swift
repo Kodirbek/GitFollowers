@@ -7,8 +7,11 @@
 
 import UIKit
 
-enum ItemInfoType {
-    case repos, gists, followers, following
+enum ItemInfoType: String {
+    case repos      = "Public Repos"
+    case gists      = "Public Gists"
+    case followers  = "Followers"
+    case following  = "Following"
 }
 
 class GFItemInfoView: UIView {
@@ -59,17 +62,17 @@ class GFItemInfoView: UIView {
     func set(itemInfoType: ItemInfoType, count: Int) {
         switch itemInfoType {
             case .repos:
-                symbolImageView.image = UIImage(systemName: SFSymbols.repos)
-                titleLabel.text = "Public Repos"
+                symbolImageView.image = SFSymbols.repos
+                titleLabel.text = itemInfoType.rawValue
             case .gists:
-                symbolImageView.image = UIImage(systemName: SFSymbols.gists)
-                titleLabel.text = "Public Gists"
+                symbolImageView.image = SFSymbols.gists
+                titleLabel.text = itemInfoType.rawValue
             case .followers:
-                symbolImageView.image = UIImage(systemName: SFSymbols.followers)
-                titleLabel.text = "Followers"
+                symbolImageView.image = SFSymbols.followers
+                titleLabel.text = itemInfoType.rawValue
             case .following:
-                symbolImageView.image = UIImage(systemName: SFSymbols.following)
-                titleLabel.text = "Following"
+                symbolImageView.image = SFSymbols.following
+                titleLabel.text = itemInfoType.rawValue
         }
         
         countLabel.text = String(count)
