@@ -11,10 +11,6 @@ enum Section {
     case main
 }
 
-protocol FollowerListVCDelegate: AnyObject {
-    func didRequestFollowers(for user: String)
-}
-
 final class FollowerListVC: GFDataLoadingVC {
     
     // MARK: - Properties
@@ -231,7 +227,7 @@ extension FollowerListVC: UISearchResultsUpdating {
 }
 
 // MARK: - FollowerListVCProtocol delegate
-extension FollowerListVC: FollowerListVCDelegate {
+extension FollowerListVC: UserInfoVCDelegate {
     func didRequestFollowers(for user: String) {
         self.username = user
         title = username

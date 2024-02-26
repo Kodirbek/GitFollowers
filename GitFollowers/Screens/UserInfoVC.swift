@@ -8,8 +8,7 @@
 import UIKit
 
 protocol UserInfoVCDelegate: AnyObject {
-    func didTapGitHubProfile(for user: User)
-    func didTapGitHubFollowers(for user: User)
+    func didRequestFollowers(for user: String)
 }
 
 final class UserInfoVC: UIViewController {
@@ -22,7 +21,7 @@ final class UserInfoVC: UIViewController {
     private var itemViews   : [UIView] = []
     
     private var userName    : String
-    weak var delegate       : FollowerListVCDelegate?
+    weak var delegate       : UserInfoVCDelegate?
     
     // MARK: - Init
     init(username: String) {
@@ -131,22 +130,24 @@ final class UserInfoVC: UIViewController {
 }
 
 // MARK: - Extensions
-extension UserInfoVC: UserInfoVCDelegate {
+extension UserInfoVC: GFRepoItemVCDelegate {
     func didTapGitHubProfile(for user: User) {
         guard let url = URL(string: user.htmlUrl) else {
-            presentGFAlertOnMainThread(title: "Invalid URL", 
-                                       message: "This user's url is invalid,",
+            presentGFAlertOnMainThread(title:       "Invalid URL",
+                                       message:     "This user's url is invalid,",
                                        buttonTitle: "Ok")
             return
         }
         
         presentSafariWith(with: url)
     }
-    
+}
+
+extension UserInfoVC: GFFollowerItemVCDelegate {
     func didTapGitHubFollowers(for user: User) {
         guard user.followers != 0 else {
-            presentGFAlertOnMainThread(title: "No Followers", 
-                                       message: "This user has no followers!",
+            presentGFAlertOnMainThread(title:       "No Followers",
+                                       message:     "This user has no followers!",
                                        buttonTitle: "Ok")
             return
         }

@@ -16,7 +16,6 @@ class GFItemInfoVC: UIViewController {
     let actionButton    = GFButton()
     
     var user: User
-    weak var delegate: UserInfoVCDelegate?
     
     // MARK: - Init
     init(user: User) {

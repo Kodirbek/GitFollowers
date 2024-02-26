@@ -7,7 +7,14 @@
 
 import UIKit
 
+protocol GFFollowerItemVCDelegate: AnyObject {
+    func didTapGitHubFollowers(for user: User)
+}
+
 class GFFollowerItemVC: GFItemInfoVC {
+    
+    // MARK: - Properties
+    weak var delegate: GFFollowerItemVCDelegate?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
