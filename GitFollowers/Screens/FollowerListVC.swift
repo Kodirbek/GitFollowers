@@ -7,9 +7,7 @@
 
 import UIKit
 
-enum Section {
-    case main
-}
+enum Section { case main }
 
 final class FollowerListVC: GFDataLoadingVC {
     
@@ -94,48 +92,6 @@ final class FollowerListVC: GFDataLoadingVC {
         })
     }
     
-    private func updateData(on followers: [Follower]) {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Follower>()
-        snapshot.appendSections([.main])
-        snapshot.appendItems(followers)
-        DispatchQueue.main.async {
-            self.dataSource.apply(snapshot, animatingDifferences: true)
-        }
-    }
-    
-    @objc func addButtonTapped() {
-        showLoading()
-        
-        NetworkManager.shared.getUserInfo(for: username) { [weak self] result in
-            guard let self = self else { return }
-            hideLoading()
-            
-            switch result {
-                case .success(let user):
-                    let favorite = Follower(login: user.login, avatarUrl: user.avatarUrl)
-                    
-                    PersistenceManager.updateWith(favorite: favorite, actionType: .add) { error in
-                        
-                        guard let error = error else {
-                            self.presentGFAlertOnMainThread(title: "Success!", 
-                                                            message: "User has been added successfully!",
-                                                            buttonTitle: "Ok")
-                            return
-                        }
-                        
-                        self.presentGFAlertOnMainThread(title: "Error",
-                                                        message: error.rawValue,
-                                                        buttonTitle: "Ok")
-                        
-                    }
-                case .failure(let error):
-                    self.presentGFAlertOnMainThread(title: "Error", 
-                                                    message: error.rawValue,
-                                                    buttonTitle: "Ok")
-            }
-        }
-    }
-    
     // MARK: - SearchController
     private func configureSearchController() {
         searchController                        = UISearchController()
@@ -145,8 +101,46 @@ final class FollowerListVC: GFDataLoadingVC {
         navigationItem.searchController         = searchController
     }
     
+    // MARK: - Add button action (persistence)
+    @objc func addButtonTapped() {
+        showLoading()
+        
+        NetworkManager.shared.getUserInfo(for: username) { [weak self] result in
+            guard let self = self else { return }
+            hideLoading()
+            
+            switch result {
+                case .success(let user):
+                    self.addUserToFavorites(user: user)
+                    
+                case .failure(let error):
+                    self.presentGFAlertOnMainThread(title: "Error", 
+                                                    message: error.rawValue,
+                                                    buttonTitle: "Ok")
+            }
+        }
+    }
     
-    // MARK: - API Method
+    private func addUserToFavorites(user: User) {
+        let favorite = Follower(login: user.login, avatarUrl: user.avatarUrl)
+        
+        PersistenceManager.updateWith(favorite: favorite, actionType: .add) { error in
+            
+            guard let error = error else {
+                self.presentGFAlertOnMainThread(title: "Success!",
+                                                message: "User has been added successfully!",
+                                                buttonTitle: "Ok")
+                return
+            }
+            
+            self.presentGFAlertOnMainThread(title: "Error",
+                                            message: error.rawValue,
+                                            buttonTitle: "Ok")
+            
+        }
+    }
+    
+    // MARK: - Get Followers, update UI
     private func getFollowers(username: String, page: Int) {
         showLoading()
         isLoadingFollowers = true
@@ -158,20 +152,7 @@ final class FollowerListVC: GFDataLoadingVC {
             
             switch result {
                 case .success(let followers):
-                    if followers.count < 100 { self.hasMoreFollowers = false }
-                    self.followers.append(contentsOf: followers)
-                    
-                    // check for the condition where the user might have no followers
-                    if self.followers.isEmpty {
-                        DispatchQueue.main.async {
-                            self.searchController.searchBar.isHidden = true
-                            self.showEmptyStateView(with: emptyMessage,
-                                                    in: self.view)
-                        }
-                        return
-                    }
-                    
-                    self.updateData(on: self.followers)
+                    self.updateUI(with: followers)
                     
                 case .failure(let error):
                     self.presentGFAlertOnMainThread(title: "Error!", message: error.rawValue, buttonTitle: "Ok")
@@ -179,6 +160,32 @@ final class FollowerListVC: GFDataLoadingVC {
             
             isLoadingFollowers = false
         }
+    }
+    
+    private func updateData(on followers: [Follower]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Follower>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(followers)
+        DispatchQueue.main.async {
+            self.dataSource.apply(snapshot, animatingDifferences: true)
+        }
+    }
+    
+    private func updateUI(with followers: [Follower]) {
+        if followers.count < 100 { self.hasMoreFollowers = false }
+        self.followers.append(contentsOf: followers)
+        
+        // check for the condition where the user might have no followers
+        if self.followers.isEmpty {
+            DispatchQueue.main.async {
+                self.searchController.searchBar.isHidden = true
+                self.showEmptyStateView(with: emptyMessage,
+                                        in: self.view)
+            }
+            return
+        }
+        
+        self.updateData(on: self.followers)
     }
 }
 
@@ -232,6 +239,7 @@ extension FollowerListVC: UserInfoVCDelegate {
         self.username = user
         title = username
         page = 1
+        
         followers.removeAll()
         filteredFollowers.removeAll()
         collectionView.scrollToItem(

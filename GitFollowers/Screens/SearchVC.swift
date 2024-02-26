@@ -9,16 +9,13 @@ import UIKit
 
 final class SearchVC: UIViewController {
     
-    
     // MARK: - Properties
     private let logoImageView                   = UIImageView()
     private let usernameTextField               = GFTextField()
     private let callToActionButton              = GFButton(backgroundColor: .systemGreen, title: "Get Followers")
-    private var logoImageViewTopConstraint      : NSLayoutConstraint!
     
     private var isUsernameEntered               : Bool { !usernameTextField.text!.isEmpty }
 
-    
     // MARK: - Init
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,9 +32,7 @@ final class SearchVC: UIViewController {
                                                      animated: true)
     }
 
-    
     // MARK: - Set up UI
-    
     private func addSubviews() {
         view.addSubviews(logoImageView, usernameTextField,callToActionButton)
     }
@@ -51,7 +46,6 @@ final class SearchVC: UIViewController {
     
     // LogoImageView
     private func layoutUI() {
-        
         let topConstraintConstant: CGFloat = DeviceTypes.isiPhoneSE || DeviceTypes.isiPhone8Zoomed ? 20 : 80
         
         NSLayoutConstraint.activate([
@@ -97,10 +91,9 @@ final class SearchVC: UIViewController {
     }
 }
 
-
 // MARK: - Extension
-
 extension SearchVC: UITextFieldDelegate {
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         pushFollowerListVC()
         textField.resignFirstResponder()

@@ -9,6 +9,7 @@ import UIKit
 
 class GFSecondaryTitleLabel: UILabel {
 
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -23,6 +24,7 @@ class GFSecondaryTitleLabel: UILabel {
         self.font = UIFont.systemFont(ofSize: fontSize, weight: .medium)
     }
     
+    // MARK: - Methods
     private func configure() {
         textColor                   = .secondaryLabel
         adjustsFontSizeToFitWidth   = true

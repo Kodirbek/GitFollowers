@@ -8,6 +8,7 @@
 import UIKit
 
 class NetworkManager {
+    
     static let shared   = NetworkManager()
     let cache           = NSCache<NSString, UIImage>()
     
@@ -16,14 +17,13 @@ class NetworkManager {
     func getFollowers(for username: String, 
                       page: Int,
                       completed: @escaping (Result<[Follower], GFError>) -> Void) {
-        // url
+        
         let urlString = BASE_URL + "\(username)/followers?per_page=100&page=\(page)"
         guard let url = URL(string: urlString) else {
             completed(.failure(.invalidUsername))
             return
         }
         
-        // task
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             
             if let _ = error {
@@ -51,21 +51,19 @@ class NetworkManager {
             }
         }
         
-        // resume
         task.resume()
     }
     
     
     func getUserInfo(for username: String, 
                      completed: @escaping (Result<User, GFError>) -> Void) {
-        // url
+        
         let urlString = BASE_URL + username
         guard let url = URL(string: urlString) else {
             completed(.failure(.invalidUsername))
             return
         }
         
-        // task
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             
             if let _ = error {
@@ -94,12 +92,12 @@ class NetworkManager {
             }
         }
         
-        // resume
         task.resume()
     }
     
     
     func downloadImage(from urlString: String, completed: @escaping (UIImage?) -> Void) {
+        
         let cacheKey = NSString(string: urlString)
         
         if let image = cache.object(forKey: cacheKey) {
@@ -125,6 +123,7 @@ class NetworkManager {
             self.cache.setObject(image, forKey: cacheKey)
             completed(image)
         }
+        
         task.resume()
     }
 }

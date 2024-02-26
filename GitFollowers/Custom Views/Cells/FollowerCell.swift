@@ -9,17 +9,13 @@ import UIKit
 
 final class FollowerCell: UICollectionViewCell {
     
-    
     // MARK: - Properties
-    
     static let reuseId          = "FollowerCell"
     private let padding         : CGFloat = 8
     private let avatarImageView = GFAvatarImageView(frame: .zero)
     private let userNameLabel   = GFTitleLabel(textAlignment: .center, fontSize: 16)
     
-    
     // MARK: - Init
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -34,14 +30,10 @@ final class FollowerCell: UICollectionViewCell {
         userNameLabel.text = ""
     }
     
-    
     // MARK: - Methods
-    
     func set(follower: Follower) {
         userNameLabel.text = follower.login
-        NetworkManager.shared.downloadImage(from: follower.avatarUrl) { [weak self] image in
-            DispatchQueue.main.async { self?.avatarImageView.image = image }
-        }
+        avatarImageView.downloadImage(fromURL: follower.avatarUrl)
     }
     
     private func configure() {

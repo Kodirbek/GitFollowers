@@ -39,7 +39,8 @@ final class GFUserInfoHeaderVC: UIViewController {
     
     // MARK: - Configure
     private func configureUIElements() {
-        downloadImage()
+        avatarImageView.downloadImage(fromURL: user.avatarUrl)
+        
         usernameLabel.text      = user.login
         nameLabel.text          = user.name ?? ""
         locationLabel.text      = user.location ?? "No Location"
@@ -48,12 +49,6 @@ final class GFUserInfoHeaderVC: UIViewController {
         
         locationImageView.image = Images.location
         locationImageView.tintColor = .secondaryLabel
-    }
-    
-    private func downloadImage() {
-        NetworkManager.shared.downloadImage(from: user.avatarUrl) { [weak self] image in
-            DispatchQueue.main.async { self?.avatarImageView.image = image }
-        }
     }
     
     // MARK: - Layout
