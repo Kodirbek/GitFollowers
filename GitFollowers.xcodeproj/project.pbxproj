@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		81171DC92B8B72A800303640 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81171DC82B8B72A800303640 /* UIView+Extension.swift */; };
+		81171DCB2B8D478100303640 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81171DCA2B8D478100303640 /* UITableView+Extension.swift */; };
 		814BC1C52B7C262200B830C2 /* GFUserInfoHeaderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814BC1C42B7C262200B830C2 /* GFUserInfoHeaderVC.swift */; };
 		814BC1C72B7C265200B830C2 /* GFSecondaryTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814BC1C62B7C265200B830C2 /* GFSecondaryTitleLabel.swift */; };
 		814BC1C92B7C2F4F00B830C2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814BC1C82B7C2F4F00B830C2 /* Constants.swift */; };
@@ -47,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		81171DC82B8B72A800303640 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		81171DCA2B8D478100303640 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		814BC1C42B7C262200B830C2 /* GFUserInfoHeaderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFUserInfoHeaderVC.swift; sourceTree = "<group>"; };
 		814BC1C62B7C265200B830C2 /* GFSecondaryTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFSecondaryTitleLabel.swift; sourceTree = "<group>"; };
 		814BC1C82B7C2F4F00B830C2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				818381A52B4D9B9F001C261E /* UIViewController+Extension.swift */,
 				81CB2E822B82BF9F00FC06B0 /* Date+Extension.swift */,
 				81171DC82B8B72A800303640 /* UIView+Extension.swift */,
+				81171DCA2B8D478100303640 /* UITableView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 			files = (
 				81EED6F82B542A4300B9DD09 /* User.swift in Sources */,
 				8183819C2B4ACDA1001C261E /* GFTextField.swift in Sources */,
+				81171DCB2B8D478100303640 /* UITableView+Extension.swift in Sources */,
 				818381A62B4D9B9F001C261E /* UIViewController+Extension.swift in Sources */,
 				818381982B484FA7001C261E /* FavoritesListVC.swift in Sources */,
 				8183819A2B4AAE49001C261E /* GFButton.swift in Sources */,

@@ -40,7 +40,8 @@ final class FavoritesListVC: GFDataLoadingVC {
         tableView.rowHeight         = 80
         tableView.delegate          = self
         tableView.dataSource        = self
-        tableView.register(FavoriteCell.self, 
+        tableView.removeExcessCells()
+        tableView.register(FavoriteCell.self,
                            forCellReuseIdentifier: FavoriteCell.reuseId)
     }
     
