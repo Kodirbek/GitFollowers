@@ -16,6 +16,16 @@ class GFRepoItemVC: GFItemInfoVC {
     // MARK: - Properties
     weak var delegate: GFRepoItemVCDelegate?
     
+    // MARK: - Init
+    init(user: User, delegate: GFRepoItemVCDelegate) {
+        super.init(user: user)
+        self.delegate = delegate
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
