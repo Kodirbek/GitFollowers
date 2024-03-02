@@ -42,8 +42,9 @@ class GFFollowerItemVC: GFItemInfoVC {
     }
     
     private func configureButton() {
-        actionButton.set(backgroundColor: .systemGreen, 
-                         title: "Git Followers")
+        actionButton.set(color: .systemGreen, 
+                         title: "Git Followers",
+                         systemImage: "person.3")
     }
     
     override func actionButtonTapped() {
