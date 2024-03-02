@@ -38,14 +38,14 @@ final class FavoriteCell: UITableViewCell {
         let padding: CGFloat = 12
         
         NSLayoutConstraint.activate([
-            avatarImageView.centerYAnchor.constraint(equalTo        : self.centerYAnchor),
-            avatarImageView.leadingAnchor.constraint(equalTo        : self.leadingAnchor, constant: padding),
+            avatarImageView.centerYAnchor.constraint(equalTo        : centerYAnchor),
+            avatarImageView.leadingAnchor.constraint(equalTo        : leadingAnchor, constant: padding),
             avatarImageView.heightAnchor.constraint(equalToConstant : 60),
             avatarImageView.widthAnchor.constraint(equalToConstant  : 60),
             
-            userNameLabel.centerYAnchor.constraint(equalTo          : self.centerYAnchor),
+            userNameLabel.centerYAnchor.constraint(equalTo          : centerYAnchor),
             userNameLabel.leadingAnchor.constraint(equalTo          : avatarImageView.trailingAnchor, constant: 24),
-            userNameLabel.trailingAnchor.constraint(equalTo         : self.trailingAnchor, constant: -padding),
+            userNameLabel.trailingAnchor.constraint(equalTo         : trailingAnchor, constant: -padding),
             userNameLabel.heightAnchor.constraint(equalToConstant   : 40)
         ])
     }
