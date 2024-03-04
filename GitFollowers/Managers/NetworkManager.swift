@@ -11,47 +11,34 @@ class NetworkManager {
     
     static let shared   = NetworkManager()
     let cache           = NSCache<NSString, UIImage>()
+    let decoder         = JSONDecoder()
     
-    private init() {}
+    private init() {
+        decoder.keyDecodingStrategy  = .convertFromSnakeCase
+        decoder.dateDecodingStrategy = .iso8601
+    }
     
-    func getFollowers(for username: String, 
-                      page: Int,
-                      completed: @escaping (Result<[Follower], GFError>) -> Void) {
+    
+    func getFollowers(for username: String, page: Int) async throws -> [Follower] {
         
         let urlString = BASE_URL + "\(username)/followers?per_page=100&page=\(page)"
+        
         guard let url = URL(string: urlString) else {
-            completed(.failure(.invalidUsername))
-            return
+            throw GFError.invalidUsername
         }
         
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+        let (data, response) = try await URLSession.shared.data(from: url)
             
-            if let _ = error {
-                completed(.failure(.unableToComplete))
-                return
-            }
-            
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                completed(.failure(.unableToComplete))
-                return
-            }
-            
-            guard let data = data else {
-                completed(.failure(.invalidData))
-                return
-            }
-            
-            do {
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                let followers = try decoder.decode([Follower].self, from: data)
-                completed(.success(followers))
-            } catch {
-                completed(.failure(.invalidData))
-            }
+        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+            throw GFError.invalidResponse
         }
-        
-        task.resume()
+            
+        do {
+            return try decoder.decode([Follower].self, from: data)
+        } catch {
+            throw GFError.invalidData
+        }
+       
     }
     
     
@@ -84,7 +71,7 @@ class NetworkManager {
             do {
                 let decoder                     = JSONDecoder()
                 decoder.keyDecodingStrategy     = .convertFromSnakeCase
-                decoder.dateDecodingStrategy    = .iso8601
+                
                 let user                        = try decoder.decode(User.self, from: data)
                 completed(.success(user))
             } catch {
