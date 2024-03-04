@@ -66,7 +66,6 @@ final class UserInfoVC: UIViewController {
     }
     
     private func getUserInfo() {
-        
         Task {
             do {
                 let user = try await NetworkManager.shared.getUserInfo(for: userName)
@@ -79,18 +78,6 @@ final class UserInfoVC: UIViewController {
                 }
             }
         }
-//        NetworkManager.shared.getUserInfo(for: userName) { [weak self] result in
-//            guard let self = self else { return }
-//            
-//            switch result {
-//                case .success(let user):
-//                    DispatchQueue.main.async { self.configureUIElements(with: user) }
-//                case .failure(let error):
-//                    self.presentGFAlert(title: "Error",
-//                                        message: error.rawValue,
-//                                        buttonTitle: "Ok")
-//            }
-//        }
     }
     
     private func configureUIElements(with user: User) {
