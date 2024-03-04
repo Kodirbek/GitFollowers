@@ -105,18 +105,18 @@ final class FollowerListVC: GFDataLoadingVC {
     @objc func addButtonTapped() {
         showLoading()
         
-        NetworkManager.shared.getUserInfo(for: username) { [weak self] result in
-            guard let self = self else { return }
-            hideLoading()
-            
-            switch result {
-                case .success(let user):
-                    self.addUserToFavorites(user: user)
-                    
-                case .failure(let error):
-                    self.presentGFAlert(title: "Error",
-                                        message: error.rawValue,
-                                        buttonTitle: "Ok")
+        Task {
+            do {
+                let user = try await NetworkManager.shared.getUserInfo(for: username)
+                addUserToFavorites(user: user)
+                hideLoading()
+            } catch {
+                if let gfError = error as? GFError {
+                    presentGFAlert(title: "Error occurred", message: gfError.rawValue, buttonTitle: "Ok")
+                } else {
+                    presentDefaultError()
+                }
+                hideLoading()
             }
         }
     }

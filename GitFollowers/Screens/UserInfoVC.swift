@@ -66,18 +66,31 @@ final class UserInfoVC: UIViewController {
     }
     
     private func getUserInfo() {
-        NetworkManager.shared.getUserInfo(for: userName) { [weak self] result in
-            guard let self = self else { return }
-            
-            switch result {
-                case .success(let user):
-                    DispatchQueue.main.async { self.configureUIElements(with: user) }
-                case .failure(let error):
-                    self.presentGFAlert(title: "Error",
-                                        message: error.rawValue,
-                                        buttonTitle: "Ok")
+        
+        Task {
+            do {
+                let user = try await NetworkManager.shared.getUserInfo(for: userName)
+                configureUIElements(with: user)
+            } catch {
+                if let gfError = error as? GFError {
+                    presentGFAlert(title: "Error occurred", message: gfError.rawValue, buttonTitle: "Ok")
+                } else {
+                    presentDefaultError()
+                }
             }
         }
+//        NetworkManager.shared.getUserInfo(for: userName) { [weak self] result in
+//            guard let self = self else { return }
+//            
+//            switch result {
+//                case .success(let user):
+//                    DispatchQueue.main.async { self.configureUIElements(with: user) }
+//                case .failure(let error):
+//                    self.presentGFAlert(title: "Error",
+//                                        message: error.rawValue,
+//                                        buttonTitle: "Ok")
+//            }
+//        }
     }
     
     private func configureUIElements(with user: User) {
