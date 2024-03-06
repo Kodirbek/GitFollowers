@@ -126,7 +126,7 @@ final class FollowerListVC: GFDataLoadingVC {
         
         PersistenceManager.updateWith(favorite: favorite, actionType: .add) { error in
             
-            guard let error = error else {
+            guard let error else {
                 self.presentGFAlert(title: "Success!",
                                     message: "User has been added successfully!",
                                     buttonTitle: "Ok")
