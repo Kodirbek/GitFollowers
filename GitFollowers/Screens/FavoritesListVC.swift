@@ -27,6 +27,20 @@ final class FavoritesListVC: GFDataLoadingVC {
     }
     
     
+    // MARK: - Content unavailable configuration
+    override func updateContentUnavailableConfiguration(using state: UIContentUnavailableConfigurationState) {
+        if favorites.isEmpty {
+            var config = UIContentUnavailableConfiguration.empty()
+            config.image = .init(systemName: "star")
+            config.imageProperties.tintColor = .systemGreen
+            config.text = "No Favorites"
+            config.secondaryText = "You can add a favorite on the follower list screen."
+            contentUnavailableConfiguration = config
+        } else {
+            contentUnavailableConfiguration = nil
+        }
+    }
+    
     // MARK: - Methods
     private func configureViewController() {
         self.view.backgroundColor   = .systemBackground
@@ -61,15 +75,11 @@ final class FavoritesListVC: GFDataLoadingVC {
     }
     
     private func updateUI(with favorites: [Follower]) {
-        if favorites.isEmpty {
-            showEmptyStateView(with: "No favorites?\nAdd one on the follower screen.",
-                               in: self.view)
-        } else {
-            self.favorites = favorites
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-                self.view.bringSubviewToFront(self.tableView)
-            }
+        self.favorites = favorites
+        setNeedsUpdateContentUnavailableConfiguration()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+            self.view.bringSubviewToFront(self.tableView)
         }
     }
 }
@@ -107,10 +117,7 @@ extension FavoritesListVC: UITableViewDelegate, UITableViewDataSource {
             guard let error else {
                 favorites.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .left)
-                if self.favorites.isEmpty {
-                    self.showEmptyStateView(with: "No favorites?\nAdd one on the follower screen.",
-                                            in: self.view)
-                }
+                setNeedsUpdateContentUnavailableConfiguration()
                 return
             }
             
