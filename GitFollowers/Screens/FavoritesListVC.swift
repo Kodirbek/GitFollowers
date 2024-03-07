@@ -31,7 +31,7 @@ final class FavoritesListVC: GFDataLoadingVC {
     override func updateContentUnavailableConfiguration(using state: UIContentUnavailableConfigurationState) {
         if favorites.isEmpty {
             var config = UIContentUnavailableConfiguration.empty()
-            config.image = .init(systemName: "star")
+            config.image = .init(systemName: "star.slash")
             config.imageProperties.tintColor = .systemGreen
             config.text = "No Favorites"
             config.secondaryText = "You can add a favorite on the follower list screen."
