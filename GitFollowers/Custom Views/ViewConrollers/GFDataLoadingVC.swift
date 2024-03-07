@@ -31,6 +31,7 @@ class GFDataLoadingVC: UIViewController {
             activityIndicator.centerYAnchor.constraint(equalTo: containerView.centerYAnchor)
         ])
         
+        activityIndicator.color = .systemGreen
         activityIndicator.startAnimating()
     }
     
